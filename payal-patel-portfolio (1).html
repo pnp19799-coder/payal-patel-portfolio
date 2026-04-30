@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payal Patel — IT Support Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --ink: #1A1713;
+    --ink-soft: #4A4540;
+    --ink-muted: #8A857E;
+    --accent: #C85C2A;
+    --accent-light: #F5E8DF;
+    --accent-mid: #E8A07A;
+    --teal: #2A7A6A;
+    --teal-light: #DFF0EC;
+    --border: rgba(26,23,19,0.12);
+    --border-soft: rgba(26,23,19,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  nav .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-light); border-radius: 2rem;
+    padding: 0.3rem 0.9rem; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1.1rem; color: var(--ink-soft); max-width: 36ch;
+    margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--ink); color: var(--cream);
+    padding: 0.8rem 1.75rem; border-radius: 3rem;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1.5px solid var(--ink); color: var(--ink);
+    padding: 0.8rem 1.75rem; border-radius: 3rem;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 3rem;
+  }
+  .hero-right-pattern {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.06;
+    background-image: radial-gradient(circle, var(--cream) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .hero-stats {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem; padding: 1.5rem;
+  }
+  .stat-card .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--accent-mid);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-card .label {
+    font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .hero-badge {
+    position: absolute; top: 3rem; right: 3rem;
+    background: var(--accent); color: white;
+    border-radius: 50%; width: 100px; height: 100px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    text-align: center; line-height: 1.3;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 2rem; height: 1px; background: var(--accent);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--ink); margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: white; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    border: 1px solid var(--border);
+    border-radius: 1rem; padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent-mid); transform: translateY(-4px); }
+  .skill-card .icon {
+    width: 2.75rem; height: 2.75rem;
+    background: var(--accent-light); border-radius: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; margin-bottom: 1rem;
+  }
+  .skill-card h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+  .skill-card p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--cream); }
+  .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-card {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 2rem; padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem; background: white;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: var(--accent-mid); }
+  .exp-period {
+    font-size: 0.8rem; font-weight: 600; color: var(--ink-muted);
+    letter-spacing: 0.06em; text-transform: uppercase; padding-top: 0.2rem;
+  }
+  .exp-company {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; color: var(--teal);
+    background: var(--teal-light); border-radius: 2rem;
+    padding: 0.2rem 0.75rem; margin-bottom: 0.6rem;
+  }
+  .exp-role {
+    font-size: 1.15rem; font-weight: 600; color: var(--ink); margin-bottom: 0.9rem;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.875rem; color: var(--ink-soft); padding: 0.35rem 0;
+    display: flex; gap: 0.75rem; align-items: flex-start;
+  }
+  .exp-bullets li::before {
+    content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 0.05rem; flex-shrink: 0;
+  }
+
+  /* ── PROJECT ── */
+  #project { background: var(--ink); }
+  #project .section-label { color: var(--accent-mid); }
+  #project .section-label::before { background: var(--accent-mid); }
+  #project .section-title { color: var(--cream); }
+  .project-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem; padding: 3rem;
+  }
+  .project-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .project-item {
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.875rem; padding: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .project-item .pi-icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+  .project-item h4 { font-size: 0.95rem; font-weight: 600; color: white; margin-bottom: 0.3rem; }
+  .project-item p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ── CERTS ── */
+  #certifications { background: white; }
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;
+  }
+  .cert-card {
+    border: 1px solid var(--border);
+    border-radius: 1rem; padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent-mid); transform: translateY(-3px); }
+  .cert-dot {
+    width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    background: var(--accent-light); display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .cert-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+  .cert-card p { font-size: 0.78rem; color: var(--ink-muted); margin-top: 0.2rem; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--cream);
+    text-align: center;
+  }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::before { display: none; }
+  .contact-links {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2.5rem;
+  }
+  .contact-chip {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1.5px solid var(--border); border-radius: 3rem;
+    padding: 0.75rem 1.5rem; font-size: 0.9rem; color: var(--ink-soft);
+    text-decoration: none; transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    background: white;
+  }
+  .contact-chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .avail-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: #E6F7EF; color: #1A7A4A; border-radius: 3rem;
+    padding: 0.5rem 1.25rem; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
+  }
+  .avail-badge::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%; background: #2EC06A;
+  }
+
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.35);
+    text-align: center; padding: 2rem; font-size: 0.8rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { min-height: 300px; }
+    section { padding: 4rem 1.5rem; }
+    .exp-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Payal Patel</a>
+  <ul>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">IT Support Professional</span>
+    <h1>Payal<br /><em>Patel</em></h1>
+    <p class="hero-desc">
+      Motivated IT support professional based in Brisbane, specialising in troubleshooting POS systems, end-user support, and delivering efficient technical solutions.
+    </p>
+    <div class="hero-ctas">
+      <a href="mailto:pnp19799@gmail.com" class="btn-primary">Get in Touch ↗</a>
+      <a href="https://www.linkedin.com/in/payal-patel-96a737202/" target="_blank" class="btn-outline">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-pattern"></div>
+    <div class="hero-badge">Available<br />Full-Time</div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="num">2+</div>
+        <div class="label">Years experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">5</div>
+        <div class="label">Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">3</div>
+        <div class="label">Languages spoken</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">MIS</div>
+        <div class="label">Masters graduate 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I bring</div>
+  <h2 class="section-title">Core Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="icon">🖥️</div>
+      <h3>Desktop & Hardware Support</h3>
+      <p>Troubleshooting desktops, laptops, POS systems, printers, and payment terminals with minimal downtime.</p>
+    </div>
+    <div class="skill-card">
+      <div class="icon">🔐</div>
+      <h3>Active Directory</h3>
+      <p>User account creation, password resets, access management, and system setup in Windows environments.</p>
+    </div>
+    <div class="skill-card">
+      <div class="icon">☁️</div>
+      <h3>Microsoft Office 365</h3>
+      <p>Hands-on experience with Outlook, Teams, and OneDrive across business environments.</p>
+    </div>
+    <div class="skill-card">
+      <div class="icon">🎫</div>
+      <h3>ITIL & Incident Handling</h3>
+      <p>P1–P4 ticket prioritisation, incident documentation, and resolution following ITIL best practices.</p>
+    </div>
+    <div class="skill-card">
+      <div class="icon">🌐</div>
+      <h3>Networking Fundamentals</h3>
+      <p>TCP/IP, DNS, VPN basics — diagnosing connectivity issues and supporting network operations.</p>
+    </div>
+    <div class="skill-card">
+      <div class="icon">💬</div>
+      <h3>Customer Communication</h3>
+      <p>Delivering clear, empathetic support face-to-face and over the phone in fast-paced settings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work history</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+    <div class="exp-card">
+      <div class="exp-period">Mar 2024 – Present</div>
+      <div>
+        <span class="exp-company">TSG Tobacconist, Brisbane</span>
+        <div class="exp-role">Customer Service Representative</div>
+        <ul class="exp-bullets">
+          <li>Provided first-level technical support for POS systems, payment terminals, and store devices.</li>
+          <li>Diagnosed and resolved hardware and connectivity issues, ensuring minimal downtime.</li>
+          <li>Troubleshot printers, scanners, and transaction errors efficiently.</li>
+          <li>Maintained accurate digital records and supported data entry processes.</li>
+          <li>Performed daily system checks and supported smooth store operations.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Jul 2023 – Jun 2024</div>
+      <div>
+        <span class="exp-company">Timeless Watches, Brisbane</span>
+        <div class="exp-role">Sales Assistant</div>
+        <ul class="exp-bullets">
+          <li>Supported customers with technical product queries and device-related issues.</li>
+          <li>Assisted in troubleshooting minor technical faults in electronic devices.</li>
+          <li>Managed POS transactions and ensured system accuracy.</li>
+          <li>Maintained stock systems and supported digital inventory processes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="section-label">Hands-on practice</div>
+  <h2 class="section-title">IT Support Home Lab</h2>
+  <div class="project-card">
+    <p style="color:rgba(255,255,255,0.65); max-width: 60ch; line-height: 1.8; font-size:0.95rem;">
+      Built a simulated real-world IT support environment using Windows systems to develop practical skills beyond formal education.
+    </p>
+    <div class="project-items">
+      <div class="project-item">
+        <div class="pi-icon">👤</div>
+        <h4>Active Directory</h4>
+        <p>Created and managed user accounts, performed access management and system setup.</p>
+      </div>
+      <div class="project-item">
+        <div class="pi-icon">🔧</div>
+        <h4>Troubleshooting</h4>
+        <p>Resolved network, printer, login, and Outlook issues in a controlled environment.</p>
+      </div>
+      <div class="project-item">
+        <div class="pi-icon">📋</div>
+        <h4>ITIL Practice</h4>
+        <p>Practised P1–P4 incident prioritisation aligned with ITSM frameworks.</p>
+      </div>
+      <div class="project-item">
+        <div class="pi-icon">📝</div>
+        <h4>Documentation</h4>
+        <p>Documented issues and resolutions using ServiceNow-style ticketing concepts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-dot">☁️</div>
+      <div>
+        <h4>Oracle Cloud Infrastructure 2025 Foundations Associate</h4>
+        <p>Oracle · 2025</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-dot">📊</div>
+      <div>
+        <h4>Google Data Analytics Certificate</h4>
+        <p>Google · Coursera</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-dot">🗄️</div>
+      <div>
+        <h4>SQL & Relational Databases</h4>
+        <p>Cognitive Class · IBM</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-dot">🤖</div>
+      <div>
+        <h4>AI for Beginners</h4>
+        <p>HP Life</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-dot">🌐</div>
+      <div>
+        <h4>Cisco AI Technical Practitioner</h4>
+        <p>Cisco</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's connect</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="avail-badge">Available for full-time, on-site roles in Brisbane</div>
+  <p style="color: var(--ink-soft); max-width: 42ch; margin: 0 auto 1rem; font-size:0.95rem;">
+    Full working rights on Temporary Graduate Visa (Subclass 485) · Valid Australian driver's licence · Own transport
+  </p>
+  <div class="contact-links">
+    <a href="mailto:pnp19799@gmail.com" class="contact-chip">✉️ pnp19799@gmail.com</a>
+    <a href="tel:0499613732" class="contact-chip">📞 0499 613 732</a>
+    <a href="https://www.linkedin.com/in/payal-patel-96a737202/" target="_blank" class="contact-chip">🔗 LinkedIn Profile</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Payal Patel · Brisbane, QLD, Australia</p>
+</footer>
+
+</body>
+</html>
